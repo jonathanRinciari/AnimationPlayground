@@ -1,3 +1,16 @@
  <div class="wrapper">
-  <button [@menuState]="stateName" (click)="toggle()" pButton type="button" label="Click" ></button>
+  <div class="header">
+    <div class="headerCard">
+      <span class="headerText">Spining</span>
+    </div>
+  </div>
+  <div class="body">
+    <div [@spinner]="stateName" (@spinner.done)="onDone($event)" class="leftWing"></div>
+    <div [@spin]="stateName"  (@spin.done)="onDone($event)" class="rightWing">
+      <div class="red"></div>
+      <div class="green"></div>
+      <div class="blue"></div>
+    </div>
+  </div>
+  <button  (click)="toggle()" pButton type="button" label="Click" ></button>
 </div>
