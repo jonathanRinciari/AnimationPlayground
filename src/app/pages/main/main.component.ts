@@ -12,8 +12,6 @@ const spinner = trigger('spinner', [
 ]);
 
 const spinnerRight = trigger('spin', [
-  state('hide', style({ transform: 'rotate(0deg)' })),
-  state('show', style({ transform: 'rotate(0deg)' })),
   transition('* <=> *', [style({transform: 'rotate(360deg)'}), animate('800ms ease-out')]),
 ]);
 
@@ -45,7 +43,14 @@ const MultiState = trigger('menuState', [
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [spinner, spinnerRight]
+  animations: [
+    trigger('float', [
+      transition('* <=> *', [
+        style({transform: 'rotate(360deg)'}), animate('800ms ease-out'),
+        style({transform: 'translateX(-100%)'}), animate('800ms ease'),
+      ]),
+    ])
+  ]
 })
 export class MainComponent implements OnInit {
   state = false;
@@ -62,18 +67,21 @@ export class MainComponent implements OnInit {
   }
 
   toggle() {
-    console.log(this.state);
-    this.state = !this.state;
+    console.log('TEST');
+      setInterval(() => {
+        console.log('TESTasf');
+          this.state = !this.state;
+      }, 2000);
   }
 
 
   onDone($event) {
     // call this function at the end of the previous animation.
     // run it as many time as defined
-    if (this.counter < this.times) {
-      this.toggle();
-      this.counter++;
-    }
+    // if (this.counter < this.times) {
+    //   this.toggle();
+    //   this.counter++;
+    // }
   }
 
 
