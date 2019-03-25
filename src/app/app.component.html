@@ -2,22 +2,22 @@
 
 <div class="wrapper">
   <div class="header">
-    <div class="leftHeader"></div>
-    <div class="mainHeader">
+    <div [@menuBar]="stateName" class="leftHeader"></div>
+    <div class="mainHeader" [@titleAlt]="stateName">
       <span class="title">Animation Playground</span>
     </div>
-    <div class="rightHeader"></div>
+    <div [@menuBarAltThree]="stateName" class="rightHeader"></div>
   </div>
   <div class="body">
-    <div class="leftNav"></div>
+    <div [@menuStateAlt]="stateName" class="leftNav"></div>
     <div class="mainNav">
       <router-outlet></router-outlet>
     </div>
-    <div [@float] class="rightNav"></div>
+    <div [@menuState]="stateName" class="rightNav"></div>
   </div>
   <div class="footer">
-    <div class="footerLeft"></div>
-    <div class="footerMain"></div>
-    <div class="footerRight"></div>
+    <div [@menuBarAltTwo]="stateName" class="footerLeft"></div>
+    <div [@title]="stateName" class="footerMain"></div>
+    <div [@menuBarAlt]="stateName" class="footerRight"></div>
   </div>
 </div>

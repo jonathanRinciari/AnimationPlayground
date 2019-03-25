@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { AnimationService } from '../../services/animation.service';
 const MenuButtonAnimation = trigger('menuState', [
   state('hide', style({ transform: 'rotate(0)' })),
   state('show', style({ transform: 'rotate(-180deg)' })),
@@ -57,7 +58,9 @@ export class MainComponent implements OnInit {
   counter = 0;
   times = 5;
 
-  constructor() { }
+  constructor(
+    private animationTrigger: AnimationService
+  ) { }
 
   get stateName() {
     return this.state ? 'move' : 'spin';
@@ -72,6 +75,10 @@ export class MainComponent implements OnInit {
         console.log('TESTasf');
           this.state = !this.state;
       }, 2000);
+  }
+
+  startAnimation() {
+    this.animationTrigger.buttonTriggered$.next({triggered: true});
   }
 
 
