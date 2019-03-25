@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes, group, sequence } from '@angular/animations';
 import { AnimationService } from '../../services/animation.service';
 const MenuButtonAnimation = trigger('menuState', [
   state('hide', style({ transform: 'rotate(0)' })),
@@ -40,18 +40,56 @@ const MultiState = trigger('menuState', [
   transition('* => *', animate('500ms ease')),
 ]);
 
+const ButtonState = trigger('button', [
+  state('show', style({
+    transform: 'translateX(-100px) rotate(90deg)',
+  })),
+  state('hide', style({
+    transform: 'translateX(0px)',
+  })),
+  transition('show => hide', [
+    style({ transform: 'translateX(-100px)', opacity: 1 }),
+      group([
+        animate('0.3s 0.1s ease', style({
+          transform: 'translateX(0px)'
+        })),
+        animate('0.3s ease', style({
+          opacity: .5
+        }))
+      ])
+  ]),
+  transition('hide => *', [
+    style({ transform: 'translateX(0px) rotate(0deg)', opacity: 1 }),
+      sequence([
+        animate('0.3s 0.1s ease', style({
+          transform: 'translateX(-100px)'
+        })),
+        animate('0.3s 0.5s ease', style({
+          transform: 'rotate(90deg)'
+        })),
+        animate('0.3s ease', style({
+          opacity: .5
+        }))
+      ])
+  ]),
+  // transition('hide <=> *', [
+  //   style({ transform: 'translateX(-100px)', opacity: 1 }),
+  //     group([
+  //       animate('0.3s 0.1s ease', style({
+  //         transform: 'translateX(0px)'
+  //       })),
+  //       animate('0.3s ease', style({
+  //         opacity: 1
+  //       }))
+  //     ])
+  // ])
+]);
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  animations: [
-    trigger('float', [
-      transition('* <=> *', [
-        style({transform: 'rotate(360deg)'}), animate('800ms ease-out'),
-        style({transform: 'translateX(-100%)'}), animate('800ms ease'),
-      ]),
-    ])
-  ]
+  animations: [ButtonState]
 })
 export class MainComponent implements OnInit {
   state = false;
@@ -63,7 +101,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   get stateName() {
-    return this.state ? 'move' : 'spin';
+    return this.state ? 'show' : 'hide';
   }
 
   ngOnInit() {
@@ -78,6 +116,7 @@ export class MainComponent implements OnInit {
   }
 
   startAnimation() {
+    this.state = !this.state;
     this.animationTrigger.buttonTriggered$.next({triggered: true});
   }
 
