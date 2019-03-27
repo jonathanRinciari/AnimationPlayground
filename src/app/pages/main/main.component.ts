@@ -1,9 +1,6 @@
+import { state, style, trigger, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes, group, sequence } from '@angular/animations';
 import { AnimationService } from '../../services/animation.service';
-import { Component } from '@angular/core';
-import { trigger, transition, style, animate, state } from '@angular/animations';
-import { AnimationService } from './services/animation.service';
 
 const width = `${window.innerWidth - 210}px`;
 
