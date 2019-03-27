@@ -64,7 +64,7 @@ const TitleAlt = trigger('titleAlt', [
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [MenuButtonAnimation, MenuButtonAnimationAlt, MenuBar, MenuBarAlt, MenuBarAltTwo, MenuBarAltThree, Title, TitleAlt]
+  animations: []
 })
 export class AppComponent {
   title = 'AnimationPlayground';

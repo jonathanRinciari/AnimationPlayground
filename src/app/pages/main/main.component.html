@@ -1,17 +1,22 @@
- <div class="wrapper">
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="wrapper">
   <div class="header">
-    <div class="headerCard"  >
-      <span (click)="startAnimation()" class="headerText">Spining</span>
+    <div [@menuBar]="stateName" class="leftHeader"></div>
+    <div class="mainHeader" [@titleAlt]="stateName">
+      <span class="title">Animation Playground</span>
     </div>
+    <div [@menuBarAltThree]="stateName" class="rightHeader"></div>
   </div>
   <div class="body">
-      <!-- [@button]="stateName" -->
-    <!-- <div [@spinner]="stateName" (@spinner.done)="onDone($event)" class="leftWing"></div>
-    <div [@spin]="stateName"  (@spin.done)="onDone($event)" class="rightWing">
-      <div class="red"></div>
-      <div class="green"></div>
-      <div class="blue"></div>
-    </div> -->
+    <div [@menuStateAlt]="stateName" class="leftNav"></div>
+    <div class="mainNav">
+    </div>
+    <div [@menuState]="stateName" class="rightNav"></div>
   </div>
-  <!-- <button  (click)="toggle()" pButton type="button" label="Click" ></button> -->
+  <div class="footer">
+    <div [@menuBarAltTwo]="stateName" class="footerLeft"></div>
+    <div [@title]="stateName" class="footerMain"></div>
+    <div [@menuBarAlt]="stateName" class="footerRight"></div>
+  </div>
 </div>

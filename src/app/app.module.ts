@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 import {ButtonModule} from 'primeng/button';
+import { CollapseComponent } from './pages/collapse/collapse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    CollapseComponent
   ],
   imports: [
     BrowserModule,
